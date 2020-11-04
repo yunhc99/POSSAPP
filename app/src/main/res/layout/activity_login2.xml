@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="#eeeeee"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp" >
@@ -54,19 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:background="@android:color/holo_red_light"
+            android:background="#FF8080"
             android:text="로그인"
             android:textColor="@android:color/black" />
-
-        <CheckBox
-            android:id="@+id/autologin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dip"
-            android:text="자동 로그인"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnRegisterScreen"
