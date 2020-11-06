@@ -5,15 +5,15 @@
     android:background="#eeeeee"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="10dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="POSSAPP"
         android:layout_marginBottom="50dp"
-        android:textSize="30dp"
+        android:text="POSSAPP"
         android:textColor="@android:color/black"
-        />
+        android:textSize="30dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/id_Login_edit"
@@ -34,7 +34,7 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"/>
+            android:textColorHint="@android:color/darker_gray" />
 
         <EditText
             android:id="@+id/pass_Login_edit"
@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
             android:background="#FF8080"
+            android:onClick="doit"
             android:text="로그인"
             android:textColor="@android:color/black" />
 
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dip"
             android:background="@null"
+            android:onClick="doit"
             android:text="회원가입"
             android:textAllCaps="false"
             android:textColor="@android:color/black"

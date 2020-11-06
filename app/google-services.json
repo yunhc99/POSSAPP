@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1005285107562",
+    "firebase_url": "https://possapp-69e62.firebaseio.com",
+    "project_id": "possapp-69e62",
+    "storage_bucket": "possapp-69e62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005285107562:android:46d487293da270268f6713",
+        "android_client_info": {
+          "package_name": "com.example.possapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005285107562-c0mak3st9cptkfdcl116dbia7oahca9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNKZ4FR7RTw7x4x1H3sGHz0WmUxI9JpgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005285107562-c0mak3st9cptkfdcl116dbia7oahca9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
