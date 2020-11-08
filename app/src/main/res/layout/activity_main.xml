@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#eeeeee"
-    android:layout_marginBottom="5dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,59 +11,83 @@
         android:orientation="horizontal">
         <Button
             android:layout_width="100dp"
-            android:layout_height="50dp"></Button>
+            android:layout_height="50dp"
+            android:text="메뉴"/>
         <TextView
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="POSS"
+            android:textSize="30dp"
             android:textAlignment="center"
             android:textColor="@android:color/black"></TextView>
 
     </LinearLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:orientation="vertical"
-        android:background="@android:color/white"
+        android:background="#eeeeee"
         >
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:padding="5dp"
+            android:layout_width="350dp"
+            android:layout_height="280dp"
+            android:layout_centerHorizontal="true"
             ></ImageView>
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="170dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:text="테스트용"
+            android:layout_height="wrap_content"
+            android:text="이번달 총 사용액"
+            android:textSize="30dp"
             ></TextView>
-        <LinearLayout
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom">
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="30dp"
-                android:text="POSS 리스트"></Button>
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="50dp"
-                android:text="POSS 생성"></Button>
-        </LinearLayout>
-    </LinearLayout>
+            android:text="목표금액: %d원"
+            android:textSize="20dp"
+            ></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="사용 금액: %d원"
+            android:textSize="20dp"
+            ></TextView>
 
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:text="POSS 리스트"></Button>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="50dp"
+            android:text="POSS 생성"></Button>
+    </LinearLayout>
 </LinearLayout>
 
 
