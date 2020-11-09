@@ -9,10 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="메뉴"/>
+
         <TextView
             android:id="@+id/username"
             android:layout_width="match_parent"
