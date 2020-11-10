@@ -75,15 +75,20 @@
         android:orientation="horizontal"
         android:layout_gravity="bottom">
         <Button
+            android:id="@+id/btnlist"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_marginLeft="30dp"
-            android:text="POSS 리스트"></Button>
+            android:text="POSS 리스트"
+            android:onClick="doit"></Button>
+
         <Button
+            android:id="@+id/btncreate"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_marginLeft="50dp"
-            android:text="POSS 생성"></Button>
+            android:text="POSS 생성"
+            android:onClick="doit" />
     </LinearLayout>
 </LinearLayout>
 
