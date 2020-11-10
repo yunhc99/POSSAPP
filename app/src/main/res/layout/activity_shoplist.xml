@@ -8,16 +8,60 @@
     <ListView
         android:id="@+id/listProduct"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:dividerHeight="10sp"/>
+
+
     <Button
         android:id="@+id/cord"
-        android:layout_width="120dp"
+        android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/listProduct"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="doit"
         android:text="코드 스캔"
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:onClick="doit"/>
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/listProduct"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="결제"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="87dp"
+        android:text="%d원"
+        android:textAlignment="center"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="239dp"
+        android:layout_marginBottom="86dp"
+        android:text="Total Price"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"/>
 </RelativeLayout>
