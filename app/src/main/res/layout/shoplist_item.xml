@@ -25,11 +25,14 @@
         android:layout_height="wrap_content"
         android:text="상품가격"
         android:layout_below="@id/txtName"/>
+
     <ImageView
         android:id="@+id/btnDelete"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_delete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@id/txtCode"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/txtCode"/>
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="3dp"
+        android:src="@drawable/ic_delete" />
 </RelativeLayout>
