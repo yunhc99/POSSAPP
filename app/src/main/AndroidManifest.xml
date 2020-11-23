@@ -23,7 +23,6 @@
         <activity android:name=".mainscreen" />
         <activity android:name=".signup" />
         <activity android:name=".bucketscreen" />
-        <activity android:name=".posslist"/>
         <activity android:name=".marketselect">
 
         </activity>
