@@ -38,9 +38,6 @@ public class Barcord extends AppCompatActivity {
             } else {
                 //값을 널값인 경우
                 Toast.makeText(this, "No data find", Toast.LENGTH_SHORT).show();
-                //Test
-                    code.setData(Uri.parse("88002798"));
-                    setResult(RESULT_OK, code);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

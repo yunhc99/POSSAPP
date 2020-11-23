@@ -22,7 +22,9 @@
         <activity android:name=".Barcord"></activity>
         <activity android:name=".mainscreen" />
         <activity android:name=".signup" />
-        <activity android:name=".bucketscreen" />
+        <activity android:name=".bucketscreen" >
+
+        </activity>
         <activity android:name=".BucketList"/>
         <activity android:name=".marketselect">
 

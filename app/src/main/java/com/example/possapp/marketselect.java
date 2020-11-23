@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -33,14 +34,44 @@ public class marketselect extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     ListAdapter listAdapte;
+    Marketinfo marketinfo=new Marketinfo();
+    FirebaseUser user;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        context=getApplicationContext();
+        database = FirebaseDatabase.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference myRef2 = database.getReference("personalbucket/"+user.getUid());//~에있는값 가져오기
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                marketinfo= (Marketinfo)snapshot.getValue(Marketinfo.class);
+                if(marketinfo!=null){
+                    System.out.println("자동 intent");
+                    Intent intent=new Intent(context,bucketscreen.class);
+                    intent.putExtra("marketname",marketinfo.getName());
+                    intent.putExtra("key",marketinfo.getWhere());
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketselect);
         listProduct=findViewById(R.id.listProduct);
         listAdapte=new ListAdapter(arraymarket,this);
         listProduct.setAdapter(listAdapte);
+
         refresh();
+
     }
 
     public void refresh(){
@@ -52,9 +83,7 @@ public class marketselect extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String name=(String)snapshot.getValue();
-                System.out.println("값 출력"+name);
                 arraymarket.add(name);
-                System.out.println("크기="+arraymarket.size());
                 listAdapte.notifyDataSetChanged();
             }
 
@@ -107,15 +136,29 @@ public class marketselect extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            System.out.println("포지션"+position);
             convertView = _inflater.inflate(R.layout.market_item, parent, false);
             TextView marketlabel=convertView.findViewById(R.id.labelll);
             marketlabel.setText(arraymarket.get(position));
+            final int a=position;
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    System.out.println("버튼 intent");
                     Intent intent=new Intent(context,bucketscreen.class);
+
+                    myRef=database.getReference("bacordlist").push();
+                    String key=myRef.getKey();
+                    marketinfo=new Marketinfo();
+                    marketinfo.setName(arraymarket.get(a));
+                    marketinfo.setWhere(key);
+                    myRef=database.getReference("personalbucket").child(user.getUid()).push();
+                    myRef.setValue(marketinfo);
+
+                    intent.putExtra("marketname",arraymarket.get(a));
+                    intent.putExtra("key",key);
+
                     startActivity(intent);
+                    finish();
                 }
             });
             return convertView;
