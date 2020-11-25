@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -129,7 +130,7 @@
     <ListView
         android:id="@+id/receiplist"
         android:layout_width="match_parent"
-        android:layout_height="365dp"
+        android:layout_height="340dp"
         android:layout_margin="5dp" />
 
     <View
