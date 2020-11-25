@@ -29,11 +29,21 @@
         android:background="#eeeeee"
         >
 
-        <ImageView
+        <ViewFlipper
+            android:id="@+id/Ad"
             android:layout_width="350dp"
             android:layout_height="280dp"
-            android:layout_centerHorizontal="true"
-            ></ImageView>
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ads_1"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ads_2"/>
+        </ViewFlipper>
     </RelativeLayout>
 
     <LinearLayout
