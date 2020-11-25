@@ -1,15 +1,15 @@
 package com.example.possapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class bucketscreen extends AppCompatActivity {
     //어뎁터
@@ -46,13 +47,14 @@ public class bucketscreen extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    String barcordCode;
+
     FirebaseUser user;
     String key;
     String marketname;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("실행됨");
+        context=getApplicationContext();
         user= FirebaseAuth.getInstance().getCurrentUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoplist);
@@ -100,35 +102,53 @@ public class bucketscreen extends AppCompatActivity {
         if (requestCode == this.requestCode) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Barcode Code : " + data.getData().toString(), Toast.LENGTH_SHORT).show();
-                barcordCode = data.getData().toString();
+                final String barcordCode = data.getData().toString();
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("product2/" + barcordCode );
-                myRef.addChildEventListener(new ChildEventListener() {
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(!snapshot.exists()){
+                            LayoutInflater inflater=(LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                            View item=inflater.inflate(R.layout.newbacordscreen,null);
+                            AlertDialog.Builder alert=new AlertDialog.Builder(bucketscreen.this);
+                            alert.setTitle("상품 추가하기");
+                            alert.setView(item);
+                            final EditText bacord=item.findViewById(R.id.barcord);
+                            final EditText name=item.findViewById(R.id.name);
+                            final EditText price=item.findViewById(R.id.price);
+                            bacord.setText(barcordCode);
 
-                        BucketInfo bucketInfo = snapshot.getValue(BucketInfo.class);
-                        bucketInfo.setBarcode(barcordCode);
-                        if(bucketInfo.getName()!=null){
+                            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String proname=name.getText().toString();
+                                    String proprice=price.getText().toString();
+                                    if(proname.equals("")||proprice.equals("")){
+                                        Toast.makeText(bucketscreen.this,"이름과 가격을 적어주세요",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        BucketInfo bucketInfo = new BucketInfo();
+                                        bucketInfo.setBarcode(barcordCode);
+                                        bucketInfo.setName(name.getText().toString());
+                                        bucketInfo.setPrice(Integer.parseInt(price.getText().toString()));
+                                        myRef=database.getReference("product2/").child(barcordCode);
+                                        myRef.push().setValue(bucketInfo);
+                                        myRef=database.getReference("bacordlist/").child(key);
+                                        myRef.push().setValue(barcordCode);
+                                        refresh();
+                                    }
+                                }
+                            });
+                            alert.setNegativeButton("취소",null);
+                            AlertDialog b=alert.create();
+                            b.show();
+                        }
+                        else{
                             myRef=database.getReference("bacordlist/").child(key);
                             myRef.push().setValue(barcordCode);
+                            refresh();
                         }
-                        else{}//바코드가 없을때
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
                     }
 
                     @Override
@@ -136,6 +156,7 @@ public class bucketscreen extends AppCompatActivity {
 
                     }
                 });
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -208,62 +229,58 @@ public class bucketscreen extends AppCompatActivity {
     }
 
     public void refresh(){
-        bucketInfos.clear();
+
         FirebaseDatabase database3 = FirebaseDatabase.getInstance();
         DatabaseReference myRef3 = database3.getReference("bacordlist/" + key );
-        myRef3.addChildEventListener(new ChildEventListener() {
+        myRef3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                final String name=(String)snapshot.getValue();
-                final String itemkey=snapshot.getKey();
-                FirebaseDatabase database2 = FirebaseDatabase.getInstance();
-                DatabaseReference myRef2 = database2.getReference("product2/" + name );
-                myRef2.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        BucketInfo bucketInfo = snapshot.getValue(BucketInfo.class);
-                        bucketInfo.setBarcode(name);
-                        bucketInfo.setKey(itemkey);
-                        bucketInfos.add(bucketInfo);
-                        adapter.notifyDataSetChanged();
-                        totalprice.setText(counttotal() + "원");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()){
+                    bucketInfos.clear();
+                    totalprice.setText(0 + "원");
+                    adapter.notifyDataSetChanged();
+                }
+                else {
+                    bucketInfos.clear();
+                    final HashMap<String,String> map=(HashMap) snapshot.getValue();
+                    for(final String aa:map.keySet()){
+                        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef2 = database2.getReference("product2/" + map.get(aa));
+
+                        myRef2.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                BucketInfo bucketInfo = snapshot.getValue(BucketInfo.class);
+                                bucketInfo.setBarcode(map.get(aa));
+                                bucketInfo.setKey(aa);
+                                bucketInfos.add(bucketInfo);
+
+                                totalprice.setText(counttotal() + "원");
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                }
             }
 
             @Override
@@ -271,6 +288,7 @@ public class bucketscreen extends AppCompatActivity {
 
             }
         });
+
 
     }
 

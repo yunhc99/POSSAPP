@@ -4,6 +4,11 @@ public class Marketinfo {
     String name;
     String where;
 
+    public Marketinfo(String name, String where) {
+        this.name = name;
+        this.where = where;
+    }
+
     public Marketinfo() {
     }
 
@@ -22,5 +27,4 @@ public class Marketinfo {
     public void setWhere(String where) {
         this.where = where;
     }
-
 }

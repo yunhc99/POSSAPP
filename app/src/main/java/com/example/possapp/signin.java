@@ -3,6 +3,7 @@ package com.example.possapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class signin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText id_Login_edit, pass_Login_edit;
     progress progress;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class signin extends AppCompatActivity {
 
         id_Login_edit = findViewById(R.id.id_Login_edit);
         pass_Login_edit = findViewById(R.id.pass_Login_edit);
+        context=getApplicationContext();
     }
 
     public void doit(View view) {
@@ -60,7 +63,7 @@ public class signin extends AppCompatActivity {
                     finish();
                 } else {
                     progress.stop();
-                    Toast.makeText(signin.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signin.this, "로그인 실패", Toast.LENGTH_LONG).show();
                 }
             }
         });
