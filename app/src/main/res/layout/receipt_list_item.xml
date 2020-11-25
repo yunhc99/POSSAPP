@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/receipt_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5sp"
     android:background="#E9F8FA"
     android:elevation="5sp"
-    android:id="@+id/receipt_item">
+    android:padding="5sp">
 
     <TextView
         android:id="@+id/days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="날짜"
-        android:textSize="16dp"
         android:textColor="@android:color/black"
-        />
+        android:textSize="16dp" />
+
     <TextView
         android:id="@+id/times"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/days"
         android:text="시간"
-        android:textSize="16dp"
         android:textColor="@android:color/black"
-        android:layout_below="@+id/days"/>
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/market_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="마트 이름"
-        android:textSize="16dp"
-        android:textColor="@android:color/black"
         android:layout_alignParentRight="true"
-        />
+        android:text="마트 이름"
+        android:textColor="@android:color/black"
+        android:textSize="16dp" />
+
     <TextView
+        android:id="@+id/total_p"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/market_name"
-        android:text="100000원"
         android:layout_alignParentRight="true"
+        android:text="100000원"
         android:textColor="@android:color/black"
-        android:textSize="16dp"
-        android:id="@+id/total_p"/>
+        android:textSize="16dp" />
 
 </RelativeLayout>

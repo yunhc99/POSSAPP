@@ -25,10 +25,12 @@
         <activity android:name=".bucketscreen" >
 
         </activity>
-        <activity android:name=".BucketList"/>
+        <activity android:name=".receiplistscreen"/>
         <activity android:name=".marketselect">
 
+
         </activity>
+        <activity android:name=".receipscreen"/>
         <activity android:name=".signin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

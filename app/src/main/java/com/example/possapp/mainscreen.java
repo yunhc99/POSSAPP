@@ -115,7 +115,7 @@ public class mainscreen extends AppCompatActivity {
     public void doit(View view) {
         switch (view.getId()){
             case R.id.btnlist:
-                Intent listIntent = new Intent(this, BucketList.class);
+                Intent listIntent = new Intent(this, receiplistscreen.class);
                 startActivity(listIntent);
                 break;
             case R.id.btncreate:
