@@ -1,69 +1,102 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10sp"
     android:background="#eeeeee"
-    android:layout_margin="10sp">
-    <ListView
-        android:id="@+id/listProduct"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:dividerHeight="10sp"/>
+    android:orientation="vertical"
+    android:padding="10dp">
 
-
-    <Button
-        android:id="@+id/cord"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/listProduct"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+    <ImageButton
+        android:id="@+id/back_Button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:background="#00000000"
         android:onClick="doit"
-        android:text="코드 스캔"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/back_button" />
 
-    <Button
-        android:id="@+id/pay"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/listProduct"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp"
-        android:text="결제"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:onClick="doit"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:layout_margin="5dp"
+        android:background="#FFFFFF"
+        android:elevation="5dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/totalprice"
-        android:layout_width="166dp"
+        <ListView
+            android:id="@+id/listProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:dividerHeight="5dp">
+
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="87dp"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="@android:color/black" />
+        android:layout_margin="5dp"
+        android:background="#FFFFFF"
+        android:elevation="5dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="71dp"
-        android:layout_marginEnd="239dp"
-        android:layout_marginBottom="86dp"
-        android:text="Total Price"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="15dp"/>
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Total Price"
+            android:textAlignment="center"
+            android:textColor="#363636"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/totalprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="%d"
+            android:textAlignment="center"
+            android:textColor="#363636"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#FF8080"
+            android:elevation="5dp"
+            android:onClick="doit"
+            android:text="결제"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/cord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="#FF8080"
+            android:elevation="5dp"
+            android:onClick="doit"
+            android:text="코드 스캔"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
