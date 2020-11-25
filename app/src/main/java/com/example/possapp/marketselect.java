@@ -47,14 +47,17 @@ public class marketselect extends AppCompatActivity {
         myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                marketinfo= (Marketinfo)snapshot.getValue(Marketinfo.class);
-                if(marketinfo!=null){
-                    System.out.println("자동 intent");
-                    Intent intent=new Intent(context,bucketscreen.class);
-                    intent.putExtra("marketname",marketinfo.getName());
-                    intent.putExtra("key",marketinfo.getWhere());
-                    startActivity(intent);
-                    finish();
+                for (DataSnapshot snapshots : snapshot.getChildren()) {
+                    Marketinfo marketinfo = snapshots.getValue(Marketinfo.class);
+                    System.out.println(marketinfo.getName());
+                    if(marketinfo!=null){
+                        System.out.println("자동 intent");
+                        Intent intent=new Intent(context,bucketscreen.class);
+                        intent.putExtra("marketname",marketinfo.getName());
+                        intent.putExtra("key",marketinfo.getWhere());
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
 

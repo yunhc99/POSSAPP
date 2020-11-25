@@ -127,6 +127,7 @@
         android:background="#363636" />
 
     <ListView
+        android:id="@+id/receiplist"
         android:layout_width="match_parent"
         android:layout_height="365dp"
         android:layout_margin="5dp" />

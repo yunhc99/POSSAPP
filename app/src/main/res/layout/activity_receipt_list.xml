@@ -15,6 +15,7 @@
         android:text="영수증 목록" />
 
     <ListView
+        android:id="@+id/receiptlist"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,13 @@ public class mainscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ViewFlipper vFlipper;//광고 출력용
+        vFlipper=(ViewFlipper)findViewById(R.id.Ad);
+        username=findViewById(R.id.username);
+        vFlipper.startFlipping();
+        vFlipper.setFlipInterval(10000);//광고 출력중...
+
         username=findViewById(R.id.username);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
@@ -115,7 +123,7 @@ public class mainscreen extends AppCompatActivity {
     public void doit(View view) {
         switch (view.getId()){
             case R.id.btnlist:
-                Intent listIntent = new Intent(this, BucketList.class);
+                Intent listIntent = new Intent(this, receiplistscreen.class);
                 startActivity(listIntent);
                 break;
             case R.id.btncreate:
