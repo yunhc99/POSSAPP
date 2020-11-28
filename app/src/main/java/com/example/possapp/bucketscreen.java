@@ -93,6 +93,13 @@ public class bucketscreen extends AppCompatActivity {
                 myRef.push().setValue(receiptInfo);
                 database.getReference("personalbucket/").child(user.getUid()).removeValue();
                 finish();
+            case R.id.back_Button:
+                database = FirebaseDatabase.getInstance();
+                database.getReference("personalbucket/").child(user.getUid()).removeValue();
+                database.getReference("bacordlist/").child(key).removeValue();
+                finish();
+                break;
+
         }
     }
 

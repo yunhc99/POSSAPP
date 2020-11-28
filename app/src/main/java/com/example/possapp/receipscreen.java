@@ -100,18 +100,16 @@ public class receipscreen  extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            convertView = _inflater.inflate(R.layout.shoplist_item, parent, false);
-            TextView name=convertView.findViewById(R.id.txtName);
-            TextView price=convertView.findViewById(R.id.txtPrice);
-            TextView code=convertView.findViewById(R.id.txtCode);
-            ImageView btndel=convertView.findViewById(R.id.btnDelete);
+            convertView = _inflater.inflate(R.layout.receipt_item, parent, false);
+            TextView name=convertView.findViewById(R.id.product_Name);
+            TextView price=convertView.findViewById(R.id.product_Price);
+
 
             final BucketInfo a=bucketInfos.get(position);
 
             name.setText(a.getName());
             price.setText(a.getPrice()+"");
-            code.setText(a.getBarcode());
-            btndel.setVisibility(View.GONE);
+
 //            btndel.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {

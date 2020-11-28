@@ -27,7 +27,7 @@
             android:textColor="#80363636" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnsearch234"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

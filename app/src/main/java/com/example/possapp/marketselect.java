@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -74,6 +76,29 @@ public class marketselect extends AppCompatActivity {
         listProduct.setAdapter(listAdapte);
 
         refresh();
+        Button search= findViewById(R.id.btnsearch234);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText editText=findViewById(R.id.editTextTextPersonName);
+                if(editText.equals("")){
+                    listAdapte=new ListAdapter(arraymarket,context);
+                    listProduct.setAdapter(listAdapte);
+                }
+                else {
+                    ArrayList<String> searcharray=new ArrayList<>();
+                    String b=editText.getText().toString();
+                    for (int i = 0; i < arraymarket.size(); i++) {
+                        String a = arraymarket.get(i);
+                        if(a.contains(b)){
+                            searcharray.add(a);
+                        }
+                    }
+                    listAdapte=new ListAdapter(searcharray,context);
+                    listProduct.setAdapter(listAdapte);
+                }
+            }
+        });
 
     }
 
