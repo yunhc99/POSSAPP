@@ -8,15 +8,17 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <ImageButton
+    <Button
         android:id="@+id/back_Button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#00000000"
+        android:background="#FF8080"
+        android:elevation="5dp"
         android:onClick="doit"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back_button" />
+        android:text="저장하지 않고 돌아가기"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"

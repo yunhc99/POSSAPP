@@ -28,7 +28,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="400dp"
         android:layout_margin="10dp"
         android:background="#FFFFFF"
         android:elevation="10dp"
@@ -36,62 +36,21 @@
 
         <ViewFlipper
             android:id="@+id/Ad"
-            android:layout_width="350dp"
-            android:layout_height="280dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ads_1" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ads_2"/>
+                android:src="@drawable/ads_2" />
         </ViewFlipper>
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#FFFFFF"
-        android:elevation="10dp"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이번달 총 사용액"
-            android:textColor="#ff333333"
-            android:textSize="20dp"
-            android:textStyle="bold"></TextView>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:progress="10"
-            android:progressBackgroundTint="#E0E0E0"
-            android:progressTint="#FF8080" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="목표금액: %d원"
-            android:textColor="#ff333333"
-            android:textSize="18dp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="사용 금액: %d원"
-            android:textColor="#ff333333"
-            android:textSize="18dp"></TextView>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
