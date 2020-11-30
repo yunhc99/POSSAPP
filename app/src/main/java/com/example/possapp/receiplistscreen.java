@@ -92,7 +92,6 @@ public class receiplistscreen extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context,receipscreen.class);
-                    System.out.println("보내는값="+a.getKey());
                     intent.putExtra("where",a.getKey());
                     intent.putExtra("totalprice",a.getTotalprice()+"");
                     intent.putExtra("marketname",a.getMarketname());

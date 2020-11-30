@@ -53,10 +53,10 @@ public class marketselect extends AppCompatActivity {
                     Marketinfo marketinfo = snapshots.getValue(Marketinfo.class);
                     System.out.println(marketinfo.getName());
                     if(marketinfo!=null){
-                        System.out.println("자동 intent");
                         Intent intent=new Intent(context,bucketscreen.class);
                         intent.putExtra("marketname",marketinfo.getName());
                         intent.putExtra("key",marketinfo.getWhere());
+                        System.out.println(marketinfo.getWhere());
                         startActivity(intent);
                         finish();
                     }
@@ -171,7 +171,6 @@ public class marketselect extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("버튼 intent");
                     Intent intent=new Intent(context,bucketscreen.class);
 
                     myRef=database.getReference("bacordlist").push();

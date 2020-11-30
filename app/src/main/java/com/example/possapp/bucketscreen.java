@@ -93,6 +93,8 @@ public class bucketscreen extends AppCompatActivity {
                 myRef.push().setValue(receiptInfo);
                 database.getReference("personalbucket/").child(user.getUid()).removeValue();
                 finish();
+                Toast.makeText(context,receiptInfo.getTotalprice()+"원이 결제되었습니다",Toast.LENGTH_LONG).show();
+                break;
             case R.id.back_Button:
                 database = FirebaseDatabase.getInstance();
                 database.getReference("personalbucket/").child(user.getUid()).removeValue();
@@ -213,7 +215,6 @@ public class bucketscreen extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     database = FirebaseDatabase.getInstance();
-                    System.out.println("a.key="+a.getKey());
                     database.getReference("bacordlist/").child(key).child(a.getKey()).removeValue();
                     refresh();
                 }

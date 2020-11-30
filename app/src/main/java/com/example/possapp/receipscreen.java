@@ -110,17 +110,6 @@ public class receipscreen  extends AppCompatActivity {
             name.setText(a.getName());
             price.setText(a.getPrice()+"");
 
-//            btndel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    database = FirebaseDatabase.getInstance();
-//                    System.out.println("a.key="+a.getKey());
-//                    database.getReference("bacordlist/").child(key).child(a.getKey()).removeValue();
-//                    refresh();
-//                }
-//            });
-
-
             return convertView;
         }
     }
