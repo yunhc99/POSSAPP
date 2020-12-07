@@ -110,7 +110,6 @@ public class bucketscreen extends AppCompatActivity {
 
         if (requestCode == this.requestCode) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Barcode Code : " + data.getData().toString(), Toast.LENGTH_SHORT).show();
                 final String barcordCode = data.getData().toString();
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("product2/" + barcordCode );
